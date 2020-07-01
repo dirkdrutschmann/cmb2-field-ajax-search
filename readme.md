@@ -1,7 +1,10 @@
-CMB2 Field Type: Ajax Search
-==================
+# CMB2 Field Type: Ajax Search
 
 Custom fields for [CMB2](https://github.com/WebDevStudios/CMB2) to attach posts, users or terms to each others.
+
+Formed from https://github.com/rubengc/cmb2-field-ajax-search.
+
+This fork removes the need to use this as a plugin and instead lets you require it using composer.
 
 ![example](example.gif)
 
@@ -11,19 +14,33 @@ This plugin is an update of [CMB2 Field Type: Post Search Ajax](https://github.c
 
 ## Installation
 
-You can install this field type as you would a WordPress plugin:
+Install from composer
 
-- Download the plugin
-- Place the plugin folder in your /wp-content/plugins/ directory
-- Activate the plugin in the Plugin dashboard
+```
+composer require ed-itsolutions/cmb2-field-ajax-search
+```
+
+Make sure that your `functions.php` loads composer
+
+```php
+require_once('vendor/autoload.php');
+```
+
+If the assets don't load you can use the filter `cmb2_field_ajax_search_url` to set it.
+
+```php
+add_filter('cmb2_field_ajax_search_url', function(){
+	return (get_template_directory_uri() . '/cmb2-ajax-search/');
+});
+```
 
 ## Parameters
 
 Options : 
-- multiple (bool, default = false) : Turn field into a multiple attached objects
-- limit (int, default = -1 : single selection) : Limit the number of posts that can be selected (-1 for unlimited)
-- sortable (bool, default = false) : Allow selected items to be sort (only if multiple = true)
-- query_args (array) : Query arguments to pass on each request
+- `multiple` (bool, default = false) : Turn field into a multiple attached objects
+- `limit` (int, default = -1 : single selection) : Limit the number of posts that can be selected (-1 for unlimited)
+- `sortable` (bool, default = false) : Allow selected items to be sort (only if multiple = true)
+- `query_args` (array) : Query arguments to pass on each request
 
 Query args:
 - query_args accepts same parameters as [WP_Query](https://codex.wordpress.org/Class_Reference/WP_Query) for `post_ajax_search`
@@ -33,12 +50,11 @@ Query args:
 ## Examples
 
 ```php
-add_action( 'cmb2_admin_init', 'cmb2_ajax_search_metabox' );
-function cmb2_ajax_search_metabox() {
+add_action('cmb2_admin_init', 'cmb2_ajax_search_metabox');
 
+function cmb2_ajax_search_metabox(){
 	$prefix = 'your_prefix_demo_';
-
-	$cmb_demo = new_cmb2_box( array(
+	$cmb_demo = new_cmb2_box(array(
 		'id'            => $prefix . 'metabox',
 		'title'         => __( 'Attached posts Metabox', 'cmb2' ),
 		'object_types'  => array( 'page', 'post' ), // Post type
@@ -62,7 +78,7 @@ function cmb2_ajax_search_metabox() {
 		'desc'          => __( 'Field description (optional)', 'cmb2' ),
 		'id'            => $prefix . 'posts',
 		'type'          => 'post_ajax_search',
-		'multiple'      => true,
+		'multiple-items' => true,
 		'limit'      	=> 10,
 		'query_args'	=> array(
 			'post_type'			=> array( 'post', 'page' ),
@@ -88,7 +104,7 @@ function cmb2_ajax_search_metabox() {
 		'desc'          => __( 'Field description (optional)', 'cmb2' ),
 		'id'            => $prefix . 'users',
 		'type'          => 'user_ajax_search',
-		'multiple'      => true,
+		'multiple-items' => true,
 		'limit'      	=> 5,
 		'query_args'	=> array(
 			'role__not_in'		=> array( 'Administrator', 'Editor' ),
@@ -113,7 +129,7 @@ function cmb2_ajax_search_metabox() {
 		'desc'          => __( 'Field description (optional)', 'cmb2' ),
 		'id'            => $prefix . 'terms',
 		'type'          => 'term_ajax_search',
-		'multiple'      => true,
+		'multiple-items'=> true,
 		'limit'      	=> -1,
 		'query_args'	=> array(
 			'taxonomy'			=> 'post_tag',
@@ -155,6 +171,13 @@ If multiple == true will return an array of IDs of attached object:
 `get_post_meta( get_the_ID(), 'your_field_id', false );`
 
 ## Changelog
+
+### 2.0.0
+
+_Ed-IT Solutions Fork Begins here_
+
+* Installable from composer (this breaks the plugin style code).
+* Implements https://github.com/rubengc/cmb2-field-ajax-search/pull/14
 
 ### 1.0.2
 * Updated devbridgeAutocomplete lib
