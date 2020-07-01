@@ -4,7 +4,7 @@
   "require": {
     "php": "^5.3.3 || ^7.0"
   },
-  "license": "GPLv2+",
+  "license": "GPL-2.0-or-later",
   "authors": [
     {
       "name": "Adam Laycock",
