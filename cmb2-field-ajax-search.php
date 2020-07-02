@@ -185,7 +185,7 @@ if(!class_exists('CMB2_Field_Ajax_Search')){
 		 * Enqueue scripts and styles
 		 */
 		public function setup_admin_scripts() {
-			$baseUrl = apply_filters('cmb2_field_ajax_search_url', get_template_directory_uri() . 'vendor/ed-itsolutions/cmb2-field-ajax-search/');
+			$baseUrl = apply_filters('cmb2_field_ajax_search_url', get_template_directory_uri() . '/vendor/ed-itsolutions/cmb2-field-ajax-search/');
 
 			wp_register_script('jquery-autocomplete-ajax-search', $baseUrl . 'js/jquery.autocomplete.min.js', array('jquery'), self::VERSION, true);
 			wp_register_script('cmb-ajax-search', $baseUrl . 'js/ajax-search.js', array('jquery', 'jquery-autocomplete-ajax-search', 'jquery-ui-sortable' ), self::VERSION, true);
