@@ -12,8 +12,5 @@
       "homepage": "https://arcath.net",
       "role": "Developer"
     }
-  ],
-  "autoload": {
-    "files": ["cmb2-field-ajax-search.php"]
-  }
+  ]
 }
