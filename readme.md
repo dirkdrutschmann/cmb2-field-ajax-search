@@ -17,7 +17,7 @@ This plugin is an update of [CMB2 Field Type: Post Search Ajax](https://github.c
 Install from composer
 
 ```
-composer require ed-itsolutions/cmb2-field-ajax-search
+composer require dirkdrutschmann/cmb2-field-ajax-search
 ```
 
 Make sure that your `functions.php` loads composer
@@ -171,6 +171,12 @@ If multiple == true will return an array of IDs of attached object:
 `get_post_meta( get_the_ID(), 'your_field_id', false );`
 
 ## Changelog
+
+### 3.0.0
+
+_DirkDrutschmann Fork Begins here_
+
+* Added compatibility for PHP 8.4
 
 ### 2.0.0
 
