@@ -1,8 +1,8 @@
 {
-  "name": "ed-itsolutions/cmb2-field-ajax-search",
+  "name": "dirkdrutschmann/cmb2-field-ajax-search",
   "description": "CMB2",
   "require": {
-    "php": "^5.3.3 || ^7.0"
+    "php": "^5.3.3 || ^8.0"
   },
   "license": "GPL-2.0-or-later",
   "authors": [
